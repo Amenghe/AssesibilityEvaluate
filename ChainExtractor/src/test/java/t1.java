@@ -84,6 +84,15 @@ public class t1 {
         stg.setScreenNodeSet(screenNodes);
         System.out.println(xStream.toXML(stg));
     }
+    @Test
+    public void convert2Hex(){
+        String a = "10";
+        if(a.startsWith("0x")){
+            System.out.println(a);
+        }else{
+            System.out.println("0x"+Integer.toHexString(Integer.valueOf(a)));
+        }
+    }
 
 }
 class person{

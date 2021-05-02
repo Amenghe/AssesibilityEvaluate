@@ -52,4 +52,11 @@ public class InSTG {
     public void setBroadcastReceiverNodeSet(Set<InBroadcastReceiverNode> broadcastReceiverNodeSet) {
         this.broadcastReceiverNodeSet = broadcastReceiverNodeSet;
     }
+
+    /*
+     *获取图中的所有链路
+     */
+    public List<List<InTransitionEdge>> getChains(){
+        return null;
+    }
 }

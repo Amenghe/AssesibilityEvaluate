@@ -10,6 +10,8 @@ import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
 
+import javax.swing.*;
+
 public class FileUtil {
 
     /*
@@ -53,31 +55,27 @@ public class FileUtil {
      *@param path:public.xml的路径
      *从public文件中找与ID对应的节点
      */
-    public static PublicNode getNodeByIdFromPublic(String id,String path){
+    public static Element getNodeByIdFromPublic(String id,String path){
         Logger logger = Logger.getLogger(FileUtil.class);
-        BufferedReader reader = null;
+        SAXReader reader = new SAXReader();
         try {
-            reader = new BufferedReader(new FileReader(new File((path))));
-            String record = "";
-            while((record = reader.readLine())!=null){
-                if(record.contains(id)){
-                    logger.info("找到ID:"+id+"对应节点");
-                    break;
+            Document document = reader.read(new File(path));
+            Element root = document.getRootElement();
+            id = convert2Hex(id);
+            for(Iterator it = root.elementIterator();it.hasNext();){
+                Element node = (Element) it.next();
+                Attribute attribute = node.attribute("id");
+                if(attribute.getValue().equals(id)){
+                    logger.info("在public.xml中找到id为"+id+"的节点");
+                    return node;
                 }
             }
-            reader.close();
-            if(record.contains(id)){
-                return new PublicNode(record);
-            }
-            logger.error("未找到"+id+"对应节点");
-            return null;
-        } catch (FileNotFoundException e) {
+        } catch (DocumentException e) {
+            logger.error("创建Document对象失败");
             e.printStackTrace();
-            return null;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
         }
+        logger.error("未在public.xml中找到id为"+id+"的节点");
+        return null;
     }
 
     /*
@@ -121,4 +119,39 @@ public class FileUtil {
         return null;
     }
 
+    /*
+     *将数字字符串转换为以0x开头的16进制字符串
+     */
+    public static  String convert2Hex(String num){
+        if(num.startsWith("0x")){
+            return num;
+        }else{
+            return "0x" + Integer.toHexString(Integer.valueOf(num));
+        }
+    }
+
+    /*
+     *在strings.xml文件中查找指定条目
+     */
+    public static String getTextByNameFromString(String path,String name){
+        Logger logger = Logger.getLogger(FileUtil.class);
+        SAXReader reader = new SAXReader();
+        try {
+            Document document = reader.read(new File(path));
+            Element root = document.getRootElement();
+            for(Iterator it = root.elementIterator();it.hasNext();){
+                Element node = (Element) it.next();
+                Attribute attribute = node.attribute("name");
+                if(attribute.getValue().equals(name)){
+                    logger.info("在strings.xml中找到name为"+name+"的节点");
+                    return node.getText();
+                }
+            }
+        } catch (DocumentException e) {
+            logger.error("创建Document对象失败");
+            e.printStackTrace();
+        }
+        logger.error("未在strings.xml中找到name为"+name+"的节点");
+        return null;
+    }
 }

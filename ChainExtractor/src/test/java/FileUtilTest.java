@@ -1,5 +1,7 @@
+import hezt.assesibilityevaluate.chainextractor.elementextractor.ButtonExtractor;
 import hezt.assesibilityevaluate.chainextractor.util.FileUtil;
 import hezt.assesibilityevaluate.chainextractor.util.PublicNode;
+import org.dom4j.Attribute;
 import org.dom4j.Element;
 import org.junit.Test;
 
@@ -13,16 +15,31 @@ public class FileUtilTest {
     }
     @Test
     public void testGetNodeById(){
-        PublicNode node = FileUtil.getNodeByIdFromPublic("0x7f030005","C:\\Users\\heztw\\Downloads\\out\\res\\values\\public.xml");
-        System.out.println(node.type+"  "+node.id+"  "+node.name);
+        Element node = FileUtil.getNodeByIdFromPublic("0x7f030005","E:\\GoalExplorerDir\\sootOutput\\SmartQuickSettings_v2.3.3_apkpure.com\\res\\values\\public.xml");
+        System.out.println(node.attribute("type").getValue()+"  "+node.attribute("id").getValue()+"  ");
     }
 
     @Test
     public void testFindNodeFromActivity(){
-        String activityPath = "C:\\Users\\heztw\\Downloads\\out\\res\\layout\\setting_activity.xml";
+        String activityPath = "E:\\GoalExplorerDir\\sootOutput\\SmartQuickSettings_v2.3.3_apkpure.com\\res\\layout\\setting_activity.xml";
         //String activityPath = "C:\\Users\\heztw\\Desktop\\test.xml";
         String id = "textTitle";
         Element element = FileUtil.findNodeFromActivity(activityPath,id);
         System.out.println(element);
+    }
+    @Test
+    public void testExtractTextFromActivity(){
+        String activityPath = "E:\\GoalExplorerDir\\sootOutput\\SmartQuickSettings_v2.3.3_apkpure.com\\res\\layout\\setting_activity.xml";
+        //String activityPath = "C:\\Users\\heztw\\Desktop\\test.xml";
+        String id = "textTitle";
+        ButtonExtractor extractor = new ButtonExtractor();
+        Element element = extractor.extractTextFromActivity(activityPath,id);
+        System.out.println(element.getQualifiedName());
+    }
+    @Test
+    public void testGetTextByNameFromString(){
+       String path = "E:\\GoalExplorerDir\\sootOutput\\SmartQuickSettings_v2.3.3_apkpure.com\\res\\values\\strings.xml";
+       String name = "list_detail_bright_mode_a";
+       System.out.println(FileUtil.getTextByNameFromString(path,name));
     }
 }
