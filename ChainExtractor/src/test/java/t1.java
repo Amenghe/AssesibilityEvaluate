@@ -32,7 +32,7 @@ public class t1 {
 
         XStream xStream = new XStream();
         xStream.setClassLoader(InSTG.class.getClassLoader());
-        XStream.setupDefaultSecurity(xStream);
+        //XStream.setupDefaultSecurity(xStream);
         xStream.setMode(XStream.NO_REFERENCES);
         xStream.autodetectAnnotations(true);
         xStream.addPermission(AnyTypePermission.ANY);
@@ -45,7 +45,7 @@ public class t1 {
     public void testSTG(){
         XStream xStream = new XStream();
         xStream.setClassLoader(InSTG.class.getClassLoader());
-        XStream.setupDefaultSecurity(xStream);
+        //XStream.setupDefaultSecurity(xStream);
         xStream.setMode(XStream.NO_REFERENCES);
         xStream.autodetectAnnotations(true);
         xStream.addPermission(AnyTypePermission.ANY);
