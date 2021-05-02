@@ -1,3 +1,5 @@
 1、关于XStream报错：com.thoughtworks.xstream.mapper.CannotResolveClassException:
   [解决方案](https://blog.csdn.net/panjin72/article/details/52839429?utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-2.control&dist_request_id=1619695066004_31811&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromMachineLearnPai2%7Edefault-2.control)
 2、空格变为_.002
+3、所有组件都继承自View或ViewGroup layout也可以有事件监听器 
+4、activity只能在代码中绑定布局文件？
