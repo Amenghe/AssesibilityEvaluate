@@ -90,6 +90,8 @@ public class InScreenNode extends InAbstractNode {
         } else if(dialogs == null){
             if(other.dialogs != null){
                 return false;
+            }else{
+                return true;
             }
         }
         return dialogs.equals(other.dialogs);
