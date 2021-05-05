@@ -89,13 +89,8 @@ public class t1 {
     }
     @Test
     public void convert2Hex() throws FileNotFoundException {
-//        File file = new File("src\\main\\resources\\androidapp.properties");
-//        System.out.println(System.getProperty("user.dir"));
-        File file = new File("src\\main\\resources\\androidapp.properties");
-//        InputStream in = this.getClass().getClassLoader().getResourceAsStream(
-//                "src\\main\\resources\\
-        FileInputStream in = new FileInputStream(file);
-        System.out.println(in);
+        String s = "com.hezt.example";
+        System.out.println(s.replaceAll(".",File.separator));
     }
 
 }

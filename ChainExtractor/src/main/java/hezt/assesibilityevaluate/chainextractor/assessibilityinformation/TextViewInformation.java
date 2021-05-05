@@ -6,7 +6,7 @@ import org.dom4j.Element;
 public class TextViewInformation extends GenericInformation{
     public TextViewInformation(String xmlFilePath, String id){
         super();
-        this.element = TextViewExtractor.getSinglton().extractElementFromXmlFile(xmlFilePath,id);
+        this.element = TextViewExtractor.extractElementFromXmlFile(xmlFilePath,id);
     }
     public TextViewInformation(Element element){
         super(element);

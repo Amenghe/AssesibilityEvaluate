@@ -1,10 +1,13 @@
 package hezt.assesibilityevaluate.chainextractor;
 
+import hezt.assesibilityevaluate.chainextractor.assessibilityinformation.GenericInformation;
+import hezt.assesibilityevaluate.chainextractor.elementextractor.GenericExtractor;
 import hezt.assesibilityevaluate.chainextractor.model.stg.input.InSTG;
 import hezt.assesibilityevaluate.chainextractor.model.stg.input.InTransitionEdge;
+import hezt.assesibilityevaluate.chainextractor.util.App;
 import hezt.assesibilityevaluate.chainextractor.util.CmdLineParser;
 import hezt.assesibilityevaluate.chainextractor.util.FileUtil;
-
+import org.dom4j.Element;
 import java.util.List;
 
 public class Main {
@@ -13,11 +16,13 @@ public class Main {
         InSTG stg = InSTG.getInstance(parser.getStgPath());
         FileUtil.decompressionApk(parser.getApkPath(),parser.getAppPath());
         List<List<InTransitionEdge>> chains = stg.getChains();
+        App app = new App(parser.getAppPath());
         for(List<InTransitionEdge> chain:chains){
             for(InTransitionEdge edge:chain){
-                System.out.print(edge);
+                GenericInformation information = Converter.edge2information(edge,app);
+                System.out.println(information.toString());
             }
-            System.out.println("_______________");
+            System.out.println("\n");
         }
     }
 }

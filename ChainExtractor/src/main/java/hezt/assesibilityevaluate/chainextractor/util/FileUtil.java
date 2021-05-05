@@ -126,6 +126,52 @@ public class FileUtil {
     }
 
     /*
+     *在menu的xml中找到包含指定id的item的menu
+     */
+    public static Element findNodeFromMenu(String menuLayoutDir,String id) throws DocumentException {
+        Logger logger = Logger.getLogger(FileUtil.class);
+        File file = new File(menuLayoutDir);
+        if(!file.isDirectory()){
+            logger.error(menuLayoutDir+"不是一个文件夹");
+            return null;
+        }
+        for(File f:file.listFiles()){
+            Element ans = findNodeHelper2(f,id);
+            if(ans!=null){
+                logger.info("在文件"+f.getName()+"中找到含有id为"+id+"的菜单项的menu");
+                return ans;
+            }
+        }
+        logger.error("未在所有menu布局文件中找到id为"+id+"的菜单项");
+        return null;
+    }
+    public static Element findNodeHelper2(File file,String id) throws DocumentException {
+        SAXReader reader = new SAXReader();
+        Document document = reader.read(file);
+        Element root = document.getRootElement();
+        Element ans = findNodeHelper3(root,id);
+        return ans;
+    }
+    public static Element findNodeHelper3(Element root,String id){
+        for(Iterator<Element> it = root.elementIterator();it.hasNext();){
+            Element child = it.next();
+
+            Attribute attribute = child.attribute("id");
+//            if(attribute!=null){
+//                System.out.println(attribute.getValue());
+//            }
+            if(attribute!=null&&attribute.getValue().contains(id)){
+                return root;
+            } else{
+                Element ans = findNodeHelper3(child,id);
+                if(ans!=null){
+                    return ans;
+                }
+            }
+        }
+        return null;
+    }
+    /*
      *将数字字符串转换为以0x开头的16进制字符串
      */
     public static  String convert2Hex(String num){
@@ -179,9 +225,15 @@ public class FileUtil {
      *解压apk文件
      */
     public static void decompressionApk(String apkFilePath,String outDir) throws IOException {
+        Logger logger = Logger.getLogger(FileUtil.class);
+        File file = new File(outDir);
+        if(file.exists()){
+            logger.info("文件夹: "+outDir+" 已存在");
+            return;
+        }
         Runtime run = Runtime.getRuntime();
         Process p = run.exec("java -jar " + System.getProperty("user.dir") + "\\ChainExtractor\\lib\\apktool_2.1.1.jar d " +
                 apkFilePath + " -o " + outDir);
-
+        logger.info("文件夹: "+outDir+" 已被创建");
     }
 }

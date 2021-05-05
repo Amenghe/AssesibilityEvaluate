@@ -6,9 +6,9 @@ import org.dom4j.Element;
 import java.util.logging.Logger;
 
 public class GenericExtractor {
-    private static GenericExtractor instance = new GenericExtractor();
-    public   Element extractElementFromXmlFile(String xmlFilePath, String elementId){
-        Logger logger = Logger.getLogger(String.valueOf(this.getClass()));
+
+    public  static Element extractElementFromXmlFile(String xmlFilePath, String elementId){
+        Logger logger = Logger.getLogger(String.valueOf(GenericExtractor.class));
         Element element = FileUtil.findNodeFromActivity(xmlFilePath,elementId);
 //        if(element == null){
 //            return null;
@@ -26,9 +26,5 @@ public class GenericExtractor {
 //            return ans;
 //        }
         return element;
-    }
-
-    public static GenericExtractor getInstance(){
-        return instance;
     }
 }

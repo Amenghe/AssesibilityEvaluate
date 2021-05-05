@@ -1,5 +1,6 @@
 import hezt.assesibilityevaluate.chainextractor.elementextractor.ButtonExtractor;
 import hezt.assesibilityevaluate.chainextractor.util.FileUtil;
+import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.junit.Test;
 
@@ -30,8 +31,7 @@ public class FileUtilTest {
         String activityPath = "E:\\GoalExplorerDir\\sootOutput\\SmartQuickSettings_v2.3.3_apkpure.com\\res\\layout\\setting_activity.xml";
         //String activityPath = "C:\\Users\\heztw\\Desktop\\test.xml";
         String id = "textTitle";
-        ButtonExtractor extractor = ButtonExtractor.getSinglton();
-        Element element = extractor.extractElementFromXmlFile(activityPath,id);
+        Element element = ButtonExtractor.extractElementFromXmlFile(activityPath,id);
         System.out.println(element.getQualifiedName());
     }
     @Test
@@ -39,5 +39,12 @@ public class FileUtilTest {
        String path = "E:\\GoalExplorerDir\\sootOutput\\SmartQuickSettings_v2.3.3_apkpure.com\\res\\values\\strings.xml";
        String name = "list_detail_bright_mode_a";
        System.out.println(FileUtil.getTextByNameFromString(path,name));
+    }
+    @Test
+    public void testFindNodeFromMenu() throws DocumentException {
+        String path = "D:\\IdeaProjects\\AssesibilityEvaluate\\ChainExtractor\\outDir\\QuranforAndroid_v2.7.5-p1_apkpure.com\\res\\menu";
+        String id = "about";
+        Element element = FileUtil.findNodeFromMenu(path,id);
+        System.out.println(element);
     }
 }
