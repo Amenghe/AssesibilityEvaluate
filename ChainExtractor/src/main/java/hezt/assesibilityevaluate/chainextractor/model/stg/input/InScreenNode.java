@@ -61,6 +61,22 @@ public class InScreenNode extends InAbstractNode {
         result = prime * result + ((fragments == null) ? 0 : fragments.hashCode());
         result = prime * result + ((menu == null) ? 0 : menu.hashCode());
         result = prime * result + ((dialogs.isEmpty()) ? 0 : dialogs.hashCode());
+//        if(fragments==null){
+//            result = prime*result;
+//        }else{
+//            result = prime*result;
+//            for(String s:fragments){
+//                result += s.hashCode();
+//            }
+//        }
+//        if(dialogs==null){
+//            result = prime*result;
+//        }else{
+//            result = prime*result;
+//            for(String s:dialogs){
+//                result += s.hashCode();
+//            }
+//        }
         return result;
     }
 
@@ -80,7 +96,7 @@ public class InScreenNode extends InAbstractNode {
         if (fragments == null) {
             if (other.fragments != null)
                 return false;
-        } else if (!fragments.equals(other.fragments)){
+        } else if (!fragments.containsAll(other.fragments)||!other.fragments.containsAll(fragments)){
             return false;
         } else if (menu == null) {
             if (other.menu != null)
@@ -94,6 +110,7 @@ public class InScreenNode extends InAbstractNode {
                 return true;
             }
         }
-        return dialogs.equals(other.dialogs);
+        boolean equal = dialogs.containsAll(other.dialogs)||other.fragments.containsAll(fragments);
+        return equal;
     }
 }

@@ -1,7 +1,5 @@
 import hezt.assesibilityevaluate.chainextractor.elementextractor.ButtonExtractor;
 import hezt.assesibilityevaluate.chainextractor.util.FileUtil;
-import hezt.assesibilityevaluate.chainextractor.util.PublicNode;
-import org.dom4j.Attribute;
 import org.dom4j.Element;
 import org.junit.Test;
 
@@ -32,8 +30,8 @@ public class FileUtilTest {
         String activityPath = "E:\\GoalExplorerDir\\sootOutput\\SmartQuickSettings_v2.3.3_apkpure.com\\res\\layout\\setting_activity.xml";
         //String activityPath = "C:\\Users\\heztw\\Desktop\\test.xml";
         String id = "textTitle";
-        ButtonExtractor extractor = new ButtonExtractor();
-        Element element = extractor.extractTextFromActivity(activityPath,id);
+        ButtonExtractor extractor = ButtonExtractor.getSinglton();
+        Element element = extractor.extractElementFromXmlFile(activityPath,id);
         System.out.println(element.getQualifiedName());
     }
     @Test

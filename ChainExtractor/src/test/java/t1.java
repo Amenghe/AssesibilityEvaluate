@@ -4,6 +4,9 @@ import com.thoughtworks.xstream.security.AnyTypePermission;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashSet;
@@ -85,13 +88,14 @@ public class t1 {
         System.out.println(xStream.toXML(stg));
     }
     @Test
-    public void convert2Hex(){
-        String a = "10";
-        if(a.startsWith("0x")){
-            System.out.println(a);
-        }else{
-            System.out.println("0x"+Integer.toHexString(Integer.valueOf(a)));
-        }
+    public void convert2Hex() throws FileNotFoundException {
+//        File file = new File("src\\main\\resources\\androidapp.properties");
+//        System.out.println(System.getProperty("user.dir"));
+        File file = new File("src\\main\\resources\\androidapp.properties");
+//        InputStream in = this.getClass().getClassLoader().getResourceAsStream(
+//                "src\\main\\resources\\
+        FileInputStream in = new FileInputStream(file);
+        System.out.println(in);
     }
 
 }

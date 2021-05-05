@@ -1,7 +1,13 @@
 package hezt.assesibilityevaluate.chainextractor.model.stg.input;
+import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.*;
+
+import com.thoughtworks.xstream.security.AnyTypePermission;
+import hezt.assesibilityevaluate.chainextractor.util.FileUtil;
 import org.apache.log4j.Logger;
 @XStreamAlias("ScreenTransitionGraph")
 public class InSTG {
@@ -9,6 +15,26 @@ public class InSTG {
     private Set<InScreenNode> screenNodeSet;
     private Set<InServiceNode> serviceNodeSet;
     private Set<InBroadcastReceiverNode> broadcastReceiverNodeSet;
+
+    public static InSTG getInstance(String stgPath){
+        Logger logger = Logger.getLogger(InSTG.class);
+        XStream xStream = new XStream();
+        xStream.setClassLoader(InSTG.class.getClassLoader());
+        //XStream.setupDefaultSecurity(xStream);
+        xStream.setMode(XStream.NO_REFERENCES);
+        xStream.autodetectAnnotations(true);
+        xStream.addPermission(AnyTypePermission.ANY);
+        InSTG stg = null;
+        try {
+            FileUtil.helpBuilderStg(xStream);
+            stg = (InSTG) xStream.fromXML(new URL("file:/"+stgPath));
+        } catch (MalformedURLException e) {
+            logger.error("STG构建失败");
+            e.printStackTrace();
+        }
+        logger.info("STG构建成功");
+        return stg;
+    }
 
     public InSTG(List<InTransitionEdge> transitionEdges, Set<InScreenNode> screenNodeSet, Set<InServiceNode> serviceNodeSet, Set<InBroadcastReceiverNode> broadcastReceiverNodeSet) {
         this.transitionEdges = transitionEdges;
@@ -60,7 +86,7 @@ public class InSTG {
      */
     public List<List<InTransitionEdge>> getChains(){
         Logger logger = Logger.getLogger(this.getClass());
-        List<List<InTransitionEdge>> chains = new ArrayList<List<InTransitionEdge>>();
+        List<List<InTransitionEdge>> chains = new LinkedList<List<InTransitionEdge>>();
         /*
          *找到所有头节点
          */
@@ -85,10 +111,45 @@ public class InSTG {
             }
             adjacency.get(edge.getSrcNode()).add(edge);
         }
-
-        Set<InAbstractNode> visited = new HashSet<InAbstractNode>();
-        ArrayList<InTransitionEdge> stack = new ArrayList<InTransitionEdge>();
-        
+        /*
+         *广度优先遍历获取链路
+         */
+        for(InAbstractNode root:roots) {
+            Set<InAbstractNode> visited = new HashSet<InAbstractNode>();
+            LinkedList<InTransitionEdge> queue = new LinkedList<InTransitionEdge>();
+            LinkedList<LinkedList<InTransitionEdge>> chainsQueue = new LinkedList<LinkedList<InTransitionEdge>>();
+            visited.add(root);
+            for(InTransitionEdge edge:adjacency.get(root)){
+                queue.add(edge);
+                LinkedList<InTransitionEdge> chain = new LinkedList<InTransitionEdge>();
+                chain.add(edge);
+                chainsQueue.addLast(chain);
+            }
+            while(!queue.isEmpty()){
+                InTransitionEdge curEdge = queue.removeFirst();
+                LinkedList<InTransitionEdge> curChain = chainsQueue.removeFirst();
+                List<InTransitionEdge> succeedEdges = adjacency.get(curEdge.getTgtNode());
+                //当前边的后继节点无出边
+                if(succeedEdges == null){
+                    chains.add(curChain);
+                }
+                //当前边的后继节点已被访问过
+                else if(visited.contains(curEdge.getTgtNode())){
+                    chains.add(curChain);
+                }else{
+                    for(InTransitionEdge succeedEdge:succeedEdges){
+                        LinkedList<InTransitionEdge> newChain = new LinkedList<InTransitionEdge>(curChain);
+                        //新边入队
+                        queue.addLast(succeedEdge);
+                        //newChain.addAll(curChain);
+                        newChain.addLast(succeedEdge);
+                        //生成一条新链路
+                        chainsQueue.addLast(newChain);
+                    }
+                }
+                visited.add(curEdge.getTgtNode());
+            }
+        }
         return chains;
     }
 }

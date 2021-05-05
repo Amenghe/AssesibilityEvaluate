@@ -5,10 +5,11 @@ import org.dom4j.Element;
 
 import java.util.logging.Logger;
 
-public abstract class AbstractExtractor {
-    public   Element extractTextFromActivity(String activityPath,String elementId){
+public class GenericExtractor {
+    private static GenericExtractor instance = new GenericExtractor();
+    public   Element extractElementFromXmlFile(String xmlFilePath, String elementId){
         Logger logger = Logger.getLogger(String.valueOf(this.getClass()));
-        Element element = FileUtil.findNodeFromActivity(activityPath,elementId);
+        Element element = FileUtil.findNodeFromActivity(xmlFilePath,elementId);
 //        if(element == null){
 //            return null;
 //        }else {
@@ -25,5 +26,9 @@ public abstract class AbstractExtractor {
 //            return ans;
 //        }
         return element;
+    }
+
+    public static GenericExtractor getInstance(){
+        return instance;
     }
 }

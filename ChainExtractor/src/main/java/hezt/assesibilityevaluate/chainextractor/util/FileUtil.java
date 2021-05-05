@@ -1,8 +1,14 @@
 package hezt.assesibilityevaluate.chainextractor.util;
 
 import java.io.*;
+import java.lang.management.RuntimeMXBean;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
+import com.thoughtworks.xstream.XStream;
+import hezt.assesibilityevaluate.chainextractor.model.stg.input.InSTG;
+import hezt.assesibilityevaluate.chainextractor.model.stg.input.InScreenNode;
 import org.apache.log4j.Logger;
 import org.dom4j.Attribute;
 import org.dom4j.Document;
@@ -153,5 +159,29 @@ public class FileUtil {
         }
         logger.error("未在strings.xml中找到name为"+name+"的节点");
         return null;
+    }
+
+    /*
+     *使用XStream前必需执行的步骤，原因不详
+     */
+    public static void helpBuilderStg(XStream xStream){
+        Set<InScreenNode> screenNodes = new HashSet<InScreenNode>();
+        InScreenNode screenNode = new InScreenNode();
+        screenNode.setName("s1");
+        screenNodes.add(screenNode);
+        InSTG stg = new InSTG();
+        stg.setScreenNodeSet(screenNodes);
+        xStream.toXML(stg);
+        //System.out.println(xStream.toXML(stg));
+    }
+
+    /*
+     *解压apk文件
+     */
+    public static void decompressionApk(String apkFilePath,String outDir) throws IOException {
+        Runtime run = Runtime.getRuntime();
+        Process p = run.exec("java -jar " + System.getProperty("user.dir") + "\\ChainExtractor\\lib\\apktool_2.1.1.jar d " +
+                apkFilePath + " -o " + outDir);
+
     }
 }
