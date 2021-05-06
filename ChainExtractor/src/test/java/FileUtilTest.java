@@ -27,7 +27,7 @@ public class FileUtilTest {
         System.out.println(element);
     }
     @Test
-    public void testExtractTextFromActivity(){
+    public void testExtractTextFromActivity() throws DocumentException {
         String activityPath = "E:\\GoalExplorerDir\\sootOutput\\SmartQuickSettings_v2.3.3_apkpure.com\\res\\layout\\setting_activity.xml";
         //String activityPath = "C:\\Users\\heztw\\Desktop\\test.xml";
         String id = "textTitle";

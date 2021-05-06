@@ -6,10 +6,11 @@ import hezt.assesibilityevaluate.chainextractor.assessibilityinformation.MenuInf
 import hezt.assesibilityevaluate.chainextractor.model.stg.input.InTransitionEdge;
 import hezt.assesibilityevaluate.chainextractor.util.App;
 import hezt.assesibilityevaluate.chainextractor.util.FileUtil;
+import org.dom4j.DocumentException;
 import org.dom4j.Element;
 
 public class Converter {
-    public static GenericInformation edge2information(InTransitionEdge edge, App app){
+    public static GenericInformation edge2information(InTransitionEdge edge, App app) throws DocumentException {
         String smaliPath = app.getSmaliPath(edge.getSrcNode().getName());
         String activityId = FileUtil.getLayoutIdFromSmali(smaliPath);
         Element activityNode = FileUtil.getNodeByIdFromPublic(activityId,app.getPublicPath());
