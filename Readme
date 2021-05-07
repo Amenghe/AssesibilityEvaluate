@@ -7,8 +7,20 @@
 
 流程：通过stg.xml构建UI图
      对图中每条链路提取无障碍文本
-功能：1、关注跨页面的操作。页面的区分取决于UI模型的粒度，因此模型会影响本测试的有效性。如在以同名activity作为同一页面的情况下，计算器的计算功能将不会被纳入评估。
+功能：1、关注跨页面的操作。页面的区分取决于GUI模型的粒度，因此GUI模型会影响本测试的有效性。如在以同名activity作为同一页面的情况下，计算器的计算功能将不会被纳入评估。
      2、activity->service可以认为是一个功能：如音乐播放，service无图形界面，用户不可视。
      3、广播接收器没有可视化界面，用户不可视。
      4、OptionMenue一般在右上角（更多图标）,上下文菜单与弹出菜单一般与某个view绑定。
-     5、在粒度比activity更细的模型中，有些操作会触发页面的回溯，这些操作可能与功能无关，应该考虑把它们从链路中剔除。
+     //5、在粒度比activity更细的模型中，有些操作会触发页面的回溯，这些操作可能与功能无关，应该考虑把它们从链路中剔除。（访问过的节点不再访问）
+
+
+talkback朗读内容;
+##基本的Android无障碍适配－contentDescription
+##对于Android的基础组件ImageButton ImageView CheckBox等，只需要简单的在xml中设置 android:contentDescription="xx"属性或代码中动态设置view.setContentDescription("xx")即可。
+##对于EditText区域，提供android:hint属性代替内容描述，文本区域为空的时候此属性帮助用户理解应该输入什么样的内容。当文本区域填充上内容，TalkBack将会读出输入的文本，而不会读出提示文本。
+##TextView或者继承至其的控件,如果contentDescription属性的值为空,无障碍服务会获取text属性的文本信息作为语音提示。
+##一般情况下，如果无障碍服务说明的是 ViewGroup，则会将来自其子 View 的内容标签合并在一起。要抑制此行为，并指明您希望为该项及其不可聚焦的子 View 提供自己的说明，请在 ViewGroup 上设置 contentDescription。比如有一个展示型卡片，不做任何设置时，可能实际无障碍自动播报的顺序或播报的内容和预期不符合，可以format需要播报的内容，给最外层view整体设置contentDescritpion。
+  对于一个不想让无障碍播报内容的view 　想要移除其焦点，可以设置其 android:importantForAccessibility="no";默认为yes
+##希望一个view获取talkback的焦点，可以使用方法view.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_FOCUSED);
+作者：芒果味的你呀
+链接：https://www.jianshu.com/p/cfb8fbccfc0d

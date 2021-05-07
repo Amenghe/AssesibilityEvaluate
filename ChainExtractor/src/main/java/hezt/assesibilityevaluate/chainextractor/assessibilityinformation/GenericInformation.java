@@ -19,7 +19,7 @@ public class GenericInformation {
     public GenericInformation(){};
 
     public  String getText(){
-        Logger logger = Logger.getLogger(String.valueOf(GenericInformation.class));
+        Logger logger = Logger.getLogger(this.getClass());
         try{
             Attribute textAtrr = element.attribute("text");
             if(textAtrr == null){
@@ -33,7 +33,7 @@ public class GenericInformation {
         return null;
     }
     public  String getContentDescription(){
-        Logger logger = Logger.getLogger(String.valueOf(GenericInformation.class));
+        Logger logger = Logger.getLogger(this.getClass());
         try{
             Attribute contentDescriptionAtrr = element.attribute("contentDescription");
             if(contentDescriptionAtrr == null){
@@ -57,7 +57,7 @@ public class GenericInformation {
 
     @Override
     public String toString(){
-        return "{text:"+getText()+";"+"contenDescription:"+getContentDescription()+"}";
+        return "{contenDescription:"+getContentDescription()+"}";
     }
 
 }
