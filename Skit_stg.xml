@@ -1,0 +1,76 @@
+<ScreenTransitionGraph>
+  <transitionEdges>
+	<TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.PrimaryContainerActivity</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.PrimaryContainerActivity._analytics</name>
+        <fragments/>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.widget.FrameLayout</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId>com.pavelrekun.skit:id/navigation_primary_analytics</resId>
+      </edgeTag>
+    </TransitionEdge>
+	<TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.PrimaryContainerActivity</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.PrimaryContainerActivity._search</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.widget.EditText</typeOfUiElement>
+        <handlerMethod>boolean onEditorAction(android.widget.TextView,int,android.view.KeyEvent)</handlerMethod>
+        <resId>com.pavelrekun.skit:id/appsSearch</resId>
+      </edgeTag>
+    </TransitionEdge>
+  </transitionEdges>
+  <screenNodeSet>
+    <ScreenNode>
+      <name>com.pavelrekun.skit.containers.SecondaryContainerActivity</name>
+      <fragments/>
+      <dialogs/>
+    </ScreenNode>
+    <ScreenNode>
+      <name>com.pavelrekun.skit.containers.PrimaryContainerActivity</name>
+      <fragments>
+        <string>v.q.y</string>
+      </fragments>
+      <dialogs/>
+    </ScreenNode>
+    <ScreenNode>
+      <name>com.pavelrekun.skit.containers.SecondaryContainerActivity</name>
+      <fragments>
+        <string>v.q.y</string>
+      </fragments>
+      <dialogs/>
+    </ScreenNode>
+    <ScreenNode>
+      <name>com.pavelrekun.skit.containers.PrimaryContainerActivity</name>
+      <fragments/>
+      <dialogs/>
+    </ScreenNode>
+  </screenNodeSet>
+  <serviceNodeSet>
+    <ServiceNode>
+      <name>com.pavelrekun.skit.analytics.messaging.CloudMessagingService</name>
+    </ServiceNode>
+  </serviceNodeSet>
+  <broadcastReceiverNodeSet/>
+</ScreenTransitionGraph>
