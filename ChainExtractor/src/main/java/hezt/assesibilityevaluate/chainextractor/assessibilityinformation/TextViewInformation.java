@@ -11,4 +11,9 @@ public class TextViewInformation extends GenericInformation{
     public TextViewInformation(Element element){
         super(element);
     }
+
+    @Override
+    public String toString(){
+        return "{text:"+getText()+","+"contenDescription:"+getContentDescription()+"}";
+    }
 }
