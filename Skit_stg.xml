@@ -3,7 +3,7 @@
   <transitionEdges>
   
     #主页点击analytics
-	<TransitionEdge>
+   <TransitionEdge>
       <srcNode class="Screen Node">
         <name>com.pavelrekun.skit.containers.PrimaryContainerActivity</name>
 		<fragments>
@@ -91,7 +91,6 @@
         <resId>com.pavelrekun.skit:id/detailsButtonOptions</resId>
       </edgeTag>
     </TransitionEdge>
-  </transitionEdges>
   
   #在内容也点击带有Permission文本框的布局
   <TransitionEdge>
@@ -115,7 +114,6 @@
         <resId></resId>
       </edgeTag>
     </TransitionEdge>
-  </transitionEdges>
   
    #在内容也点击带有Activities文本框的布局
   <TransitionEdge>
@@ -139,7 +137,6 @@
         <resId></resId>
       </edgeTag>
     </TransitionEdge>
-  </transitionEdges>
   
    #在内容也点击带有Service文本框的布局
   <TransitionEdge>
