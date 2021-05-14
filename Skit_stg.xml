@@ -1,5 +1,8 @@
+#target的名字为activity名字._edgeId 若没有id则从0开始编号 若触发的组件为布局
 <ScreenTransitionGraph>
   <transitionEdges>
+  
+    #主页点击analytics
 	<TransitionEdge>
       <srcNode class="Screen Node">
         <name>com.pavelrekun.skit.containers.PrimaryContainerActivity</name>
@@ -16,9 +19,11 @@
       <edgeTag>
         <typeOfUiElement>android.widget.FrameLayout</typeOfUiElement>
         <handlerMethod>void onClick(android.view.View)</handlerMethod>
-        <resId>com.pavelrekun.skit:id/navigation_primary_analytics</resId>
+        <resId>navigation_primary_analytics</resId>
       </edgeTag>
     </TransitionEdge>
+	
+	#主页搜索框输入文字后确认
 	<TransitionEdge>
       <srcNode class="Screen Node">
         <name>com.pavelrekun.skit.containers.PrimaryContainerActivity</name>
@@ -28,7 +33,7 @@
       <dialogs/>
       </srcNode>
       <tgtNode class="Screen Node">
-        <name>com.pavelrekun.skit.containers.PrimaryContainerActivity._search</name>
+        <name>com.pavelrekun.skit.containers.PrimaryContainerActivity._appSearch</name>
         <fragments>
 			<string>v.q.y</string>
 		</fragments>
@@ -37,9 +42,521 @@
       <edgeTag>
         <typeOfUiElement>android.widget.EditText</typeOfUiElement>
         <handlerMethod>boolean onEditorAction(android.widget.TextView,int,android.view.KeyEvent)</handlerMethod>
-        <resId>com.pavelrekun.skit:id/appsSearch</resId>
+        <resId>appsSearch</resId>
       </edgeTag>
     </TransitionEdge>
+
+	#点击某一个app后进入内容页
+	<TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.PrimaryContainerActivity._appSearch</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._0</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.view.ViewGroup</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId></resId>
+      </edgeTag>
+    </TransitionEdge>
+	
+	#在内容页点击Option按钮
+	<TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._0</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._detailsButtonOptions</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.view.Button</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId>com.pavelrekun.skit:id/detailsButtonOptions</resId>
+      </edgeTag>
+    </TransitionEdge>
+  </transitionEdges>
+  
+  #在内容也点击带有Permission文本框的布局
+  <TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._0</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._1</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.widget.LinearLayout</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId></resId>
+      </edgeTag>
+    </TransitionEdge>
+  </transitionEdges>
+  
+   #在内容也点击带有Activities文本框的布局
+  <TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._0</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._2</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.widget.LinearLayout</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId></resId>
+      </edgeTag>
+    </TransitionEdge>
+  </transitionEdges>
+  
+   #在内容也点击带有Service文本框的布局
+  <TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._0</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._3</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.widget.LinearLayout</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId></resId>
+      </edgeTag>
+    </TransitionEdge>
+	
+	 #在内容也点击带有Certificate文本框的布局
+  <TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._0</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._4</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.widget.LinearLayout</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId></resId>
+      </edgeTag>
+    </TransitionEdge>
+  
+   #在内容也点击带有Resources文本框的布局
+  <TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._0</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._5</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.widget.LinearLayout</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId></resId>
+      </edgeTag>
+    </TransitionEdge>
+  
+   #在内容也点击带有Resources文本框的布局
+  <TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._0</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._5</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.widget.LinearLayout</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId></resId>
+      </edgeTag>
+    </TransitionEdge>
+	
+  #在内容也点击带有Resources文本框的布局
+  <TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._0</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._5</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.widget.LinearLayout</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId></resId>
+      </edgeTag>
+    </TransitionEdge>
+	
+	#在内容也点击带有Broadcasts文本框的布局
+  <TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._0</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._6</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.widget.LinearLayout</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId></resId>
+      </edgeTag>
+    </TransitionEdge>
+	
+	#在内容也点击带有Providers文本框的布局
+  <TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._0</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._7</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.widget.LinearLayout</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId></resId>
+      </edgeTag>
+    </TransitionEdge>
+	
+	#在内容也点击带有Manifest文本框的布局
+  <TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._0</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._8</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.widget.LinearLayout</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId></resId>
+      </edgeTag>
+    </TransitionEdge>
+	
+	#主页点击Tools
+  <TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.PrimaryContainerActivity</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.PrimaryContainerActivity._Tools</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.widget.FrameLayout</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId>navigation_primary_tools</resId>
+      </edgeTag>
+    </TransitionEdge>
+	
+	#Tools页点击applist
+  <TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.PrimaryContainerActivity._Tools</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._9</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.widget.LinearLayout</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId></resId>
+      </edgeTag>
+    </TransitionEdge>
+	
+	#Tools页点击PREMIUM
+	<TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.PrimaryContainerActivity._Tools</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._premiumBadgeTitle</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.view.TextView</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId>premiumBadgeTitle</resId>
+      </edgeTag>
+    </TransitionEdge>
+	
+	#主页点击More
+  <TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.PrimaryContainerActivity</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.PrimaryContainerActivity._More</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.widget.FrameLayout</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId>navigation_primary_more</resId>
+      </edgeTag>
+    </TransitionEdge>
+	
+	#在more中点击LEARN MORE 目标页面被定义过
+	<TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.PrimaryContainerActivity._More</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._premiumBadgeTitle</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.widget.Button</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId>morePremiumButtonLearnMore</resId>
+      </edgeTag>
+    </TransitionEdge>
+	
+	#在more中点击Send feedback
+	<TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.PrimaryContainerActivity._More</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._moreManagementFeedback</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.view.TextView</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId>moreManagementFeedback</resId>
+      </edgeTag>
+    </TransitionEdge>
+	
+	#在more中点击Other apps
+	<TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.PrimaryContainerActivity._More</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._moreManagementOtherApps</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.view.TextView</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId>moreManagementOtherApps</resId>
+      </edgeTag>
+    </TransitionEdge>
+	
+	#在more中点击check for updates
+	<TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.PrimaryContainerActivity._More</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.PrimaryContainerActivity._moreManagementCheckForUpdates</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.view.TextView</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId>moreManagementCheckForUpdates</resId>
+      </edgeTag>
+    </TransitionEdge>
+	
+	
+	#在more中点击About Skit
+	<TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.PrimaryContainerActivity._More</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._moreManagementAbout</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.view.TextView</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId>moreManagementAbout</resId>
+      </edgeTag>
+    </TransitionEdge>
+	
+	#在more中点击Settings
+	<TransitionEdge>
+      <srcNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.PrimaryContainerActivity._More</name>
+		<fragments>
+        <string>v.q.y</string>
+		</fragments>
+      <dialogs/>
+      </srcNode>
+      <tgtNode class="Screen Node">
+        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._moreManagementSettings</name>
+        <fragments>
+			<string>v.q.y</string>
+		</fragments>
+        <dialogs/>
+      </tgtNode>
+      <edgeTag>
+        <typeOfUiElement>android.view.TextView</typeOfUiElement>
+        <handlerMethod>void onClick(android.view.View)</handlerMethod>
+        <resId>moreManagementSettings</resId>
+      </edgeTag>
+    </TransitionEdge>
+	
+	#在Setting中点击 Appearence General apps units of measurement changelog libraries FAQ Help with ....
   </transitionEdges>
   <screenNodeSet>
     <ScreenNode>

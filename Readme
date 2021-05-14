@@ -24,3 +24,8 @@ talkback朗读内容;
 ##希望一个view获取talkback的焦点，可以使用方法view.sendAccessibilityEvent(AccessibilityEvent.TYPE_VIEW_FOCUSED);
 作者：芒果味的你呀
 链接：https://www.jianshu.com/p/cfb8fbccfc0d
+官网：https://support.google.com/accessibility/android/answer/7158690?hl=en
+
+复杂view的无障碍适配
+对于基础组件，设置contentDescritpion就可以达到目标，那对于我们自定义的复杂view（比如日历的月盘，chart 柱状图等）来说，又该如何交互与播报呢？
+总的来说，通过在自定义view里设置 ViewCompat.setAccessibilityDelegate(this, accessibilityDelegate);　扩展各个无障碍方法，实现自定义的无障碍。
