@@ -4,7 +4,7 @@ public class EdgeTag {
 
     private String typeOfUiElement;
     private String handlerMethod;
-    private Integer resId;
+    private String resId;
 
     public String getTypeOfUiElement() {
         return typeOfUiElement;
@@ -22,15 +22,15 @@ public class EdgeTag {
         this.handlerMethod = handlerMethod;
     }
 
-    public Integer getResId() {
+    public String getResId() {
         return resId;
     }
 
-    public void setResId(Integer resId) {
+    public void setResId(String resId) {
         this.resId = resId;
     }
 
-    public EdgeTag(String typeOfUiElement, String handlerMethod, Integer resId) {
+    public EdgeTag(String typeOfUiElement, String handlerMethod, String resId) {
         this.typeOfUiElement = typeOfUiElement;
         this.handlerMethod = handlerMethod;
         this.resId = resId;

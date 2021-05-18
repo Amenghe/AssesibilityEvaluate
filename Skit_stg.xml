@@ -88,7 +88,7 @@
       <edgeTag>
         <typeOfUiElement>android.view.Button</typeOfUiElement>
         <handlerMethod>void onClick(android.view.View)</handlerMethod>
-        <resId>com.pavelrekun.skit:id/detailsButtonOptions</resId>
+        <resId>detailsButtonOptions</resId>
       </edgeTag>
     </TransitionEdge>
   
@@ -207,7 +207,7 @@
       </edgeTag>
     </TransitionEdge>
   
-   #在内容也点击带有Resources文本框的布局
+   #在内容也点击带有Broadcasts文本框的布局
   <TransitionEdge>
       <srcNode class="Screen Node">
         <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._0</name>
@@ -226,11 +226,11 @@
       <edgeTag>
         <typeOfUiElement>android.widget.LinearLayout</typeOfUiElement>
         <handlerMethod>void onClick(android.view.View)</handlerMethod>
-        <resId></resId>
+        <resId>Broadcasts</resId>
       </edgeTag>
     </TransitionEdge>
 	
-  #在内容也点击带有Resources文本框的布局
+  #在内容也点击带有Providers文本框的布局
   <TransitionEdge>
       <srcNode class="Screen Node">
         <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._0</name>
@@ -249,56 +249,10 @@
       <edgeTag>
         <typeOfUiElement>android.widget.LinearLayout</typeOfUiElement>
         <handlerMethod>void onClick(android.view.View)</handlerMethod>
-        <resId></resId>
+        <resId>Providers</resId>
       </edgeTag>
     </TransitionEdge>
-	
-	#在内容也点击带有Broadcasts文本框的布局
-  <TransitionEdge>
-      <srcNode class="Screen Node">
-        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._0</name>
-		<fragments>
-        <string>v.q.y</string>
-		</fragments>
-      <dialogs/>
-      </srcNode>
-      <tgtNode class="Screen Node">
-        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._6</name>
-        <fragments>
-			<string>v.q.y</string>
-		</fragments>
-        <dialogs/>
-      </tgtNode>
-      <edgeTag>
-        <typeOfUiElement>android.widget.LinearLayout</typeOfUiElement>
-        <handlerMethod>void onClick(android.view.View)</handlerMethod>
-        <resId></resId>
-      </edgeTag>
-    </TransitionEdge>
-	
-	#在内容也点击带有Providers文本框的布局
-  <TransitionEdge>
-      <srcNode class="Screen Node">
-        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._0</name>
-		<fragments>
-        <string>v.q.y</string>
-		</fragments>
-      <dialogs/>
-      </srcNode>
-      <tgtNode class="Screen Node">
-        <name>com.pavelrekun.skit.containers.SecondaryContainerActivity._7</name>
-        <fragments>
-			<string>v.q.y</string>
-		</fragments>
-        <dialogs/>
-      </tgtNode>
-      <edgeTag>
-        <typeOfUiElement>android.widget.LinearLayout</typeOfUiElement>
-        <handlerMethod>void onClick(android.view.View)</handlerMethod>
-        <resId></resId>
-      </edgeTag>
-    </TransitionEdge>
-	
+
 	#在内容也点击带有Manifest文本框的布局
   <TransitionEdge>
       <srcNode class="Screen Node">

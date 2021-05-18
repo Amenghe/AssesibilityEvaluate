@@ -10,19 +10,20 @@ import org.dom4j.io.SAXReader;
 
 import java.io.File;
 
-public class MenuExtractor{
+public class ViewGroupExtractor {
     public static Element extractElementFromXmlFile(App app, String elementId) throws DocumentException {
-        Logger logger = Logger.getLogger(MenuExtractor.class);
+        Logger logger = Logger.getLogger(ViewGroupExtractor.class);
+        SAXReader reader = new SAXReader();
         elementId = app.getIdFromPublicXml(elementId);
-        if(elementId == null)return null;
-
-        try {
-            logger.info("找到id为"+elementId+"的菜单项元素");
-            return FileUtil.findNodeFromMenu(app.getMenuLayoutDir(),elementId);
-        } catch (DocumentException e) {
-            e.printStackTrace();
+        for(File file:app.layoutFiles){
+            Document document = reader.read(file);
+            Element node = FileUtil.findNodeHelper(document.getRootElement(),elementId);
+            if(node != null){
+                logger.info("找到id为"+elementId+"的布局元素");
+                return node;
+            }
         }
-        logger.error("没有找到id为"+elementId+"的菜单项元素");
+        logger.info("没有找到id为"+elementId+"的布局元素");
         return null;
     }
 }

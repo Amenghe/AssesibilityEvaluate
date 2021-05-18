@@ -15,8 +15,11 @@ public class Main {
         CmdLineParser parser = new CmdLineParser(args);
         InSTG stg = InSTG.getInstance(parser.getStgPath());
         FileUtil.decompressionApk(parser.getApkPath(),parser.getAppPath());
+        Thread.currentThread().sleep(3000);
         List<List<InTransitionEdge>> chains = stg.getChains();
         App app = new App(parser.getAppPath());
+        app.menu2Layout();
+        Thread.currentThread().sleep(3000);
         for(List<InTransitionEdge> chain:chains){
             for(InTransitionEdge edge:chain){
                 GenericInformation information = Converter.edge2information(edge,app);

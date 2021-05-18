@@ -2,14 +2,16 @@ package hezt.assesibilityevaluate.chainextractor.assessibilityinformation;
 
 import hezt.assesibilityevaluate.chainextractor.elementextractor.EditTextExtractor;
 
+import hezt.assesibilityevaluate.chainextractor.util.App;
 import org.apache.log4j.Logger;
 import org.dom4j.Attribute;
+import org.dom4j.DocumentException;
 import org.dom4j.Element;
 
 public class EditTextInformation extends GenericInformation {
-    public EditTextInformation(String xmlFilePath,String id){
+    public EditTextInformation(App app, String id) throws DocumentException {
         super();
-        this.element = EditTextExtractor.extractElementFromXmlFile(xmlFilePath,id);
+        this.element = EditTextExtractor.extractElementFromXmlFile(app,id);
     }
     public EditTextInformation(Element element){
         super(element);
@@ -29,6 +31,7 @@ public class EditTextInformation extends GenericInformation {
         }
         return null;
     }
+
 
     @Override
     public String toString(){

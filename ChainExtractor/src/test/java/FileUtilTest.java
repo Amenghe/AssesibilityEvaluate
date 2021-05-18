@@ -1,8 +1,12 @@
 import hezt.assesibilityevaluate.chainextractor.elementextractor.ButtonExtractor;
 import hezt.assesibilityevaluate.chainextractor.util.FileUtil;
+import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
+import org.dom4j.io.SAXReader;
 import org.junit.Test;
+
+import java.io.File;
 
 
 public class FileUtilTest {
@@ -26,14 +30,14 @@ public class FileUtilTest {
         Element element = FileUtil.findNodeFromActivity(activityPath,id);
         System.out.println(element);
     }
-    @Test
-    public void testExtractTextFromActivity() throws DocumentException {
-        String activityPath = "E:\\GoalExplorerDir\\sootOutput\\SmartQuickSettings_v2.3.3_apkpure.com\\res\\layout\\setting_activity.xml";
-        //String activityPath = "C:\\Users\\heztw\\Desktop\\test.xml";
-        String id = "textTitle";
-        Element element = ButtonExtractor.extractElementFromXmlFile(activityPath,id);
-        System.out.println(element.getQualifiedName());
-    }
+//    @Test
+//    public void testExtractTextFromActivity() throws DocumentException {
+//        String activityPath = "E:\\GoalExplorerDir\\sootOutput\\SmartQuickSettings_v2.3.3_apkpure.com\\res\\layout\\setting_activity.xml";
+//        //String activityPath = "C:\\Users\\heztw\\Desktop\\test.xml";
+//        String id = "textTitle";
+//        Element element = ButtonExtractor.extractElementFromXmlFile(activityPath,id);
+//        System.out.println(element.getQualifiedName());
+//    }
     @Test
     public void testGetTextByNameFromString(){
        String path = "E:\\GoalExplorerDir\\sootOutput\\SmartQuickSettings_v2.3.3_apkpure.com\\res\\values\\strings.xml";
@@ -47,4 +51,14 @@ public class FileUtilTest {
         Element element = FileUtil.findNodeFromMenu(path,id);
         System.out.println(element);
     }
+    @Test
+    public void testQName() throws DocumentException {
+//        SAXReader reader = new SAXReader();
+//        Document document = reader.read(new File("C:\\Users\\heztw\\Desktop\\QName.xml"));
+//        Element root = document.getRootElement();
+//        System.out.println(root.getQName().getName());
+        String a = "@string/xxx";
+        System.out.println(a.substring(8,a.length()));
+    }
+
 }
